@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SocialMedia.API.Application.Logic.Users.Command;
 using SocialMedia.API.Application.Logic.Users.Query;
 using SocialMedia.API.Domain.Models;
 
@@ -26,6 +27,11 @@ namespace SocialMedia.API.Controllers
         {
 
             return await mediator.Send(loginQuery);
+        }
+        [HttpPost("Register")]
+        public async Task<ActionResult<User>> Register(UserRegisterCommand  registerCommand)
+        {
+            return await mediator.Send(registerCommand);
         }
     }
 }
