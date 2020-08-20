@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SocialMedia.API.Domain.Identity;
 using SocialMedia.API.Persistence.DataAccess;
+using SocialMedia.API.Persistence.SeedData;
 
 namespace SocialMedia.API
 {
@@ -29,6 +30,7 @@ namespace SocialMedia.API
                     var userManager = service.GetRequiredService<UserManager<AppUser>>();
                     var roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
                     context.Database.Migrate();
+                    Seed.SeedData(context, userManager, roleManager).Wait();
                 }
                 catch (Exception ex)
                 {

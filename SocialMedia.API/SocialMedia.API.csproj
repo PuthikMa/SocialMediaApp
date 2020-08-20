@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Logic\Post\Query\" />
     <Folder Include="Application\Services\Interface\" />
   </ItemGroup>
 
