@@ -98,9 +98,11 @@ namespace SocialMedia.API
             app.UseOpenApi();
             app.UseSwaggerUi3();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

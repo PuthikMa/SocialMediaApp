@@ -12,7 +12,7 @@ namespace SocialMedia.API.Domain.Dtos
         public int Id { get; set; }
         public string PostContent { get; set; }
         public string UserId { get; set; }
-        public virtual AppUser User { get; set; }
+        public virtual AppUserDto User { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }
 }

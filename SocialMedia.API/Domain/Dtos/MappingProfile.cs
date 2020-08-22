@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SocialMedia.API.Domain.Identity;
 using SocialMedia.API.Domain.Models;
 
 namespace SocialMedia.API.Domain.Dtos
@@ -13,7 +14,8 @@ namespace SocialMedia.API.Domain.Dtos
             CreateMap<CommentDto, Comment>();
             CreateMap<Photo, PhotoDto>();
             CreateMap<PhotoDto, Photo>();
-
+            CreateMap<AppUserDto, AppUser>();
+            CreateMap<AppUser, AppUserDto>();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace SocialMedia.API.Infrastructure.Security
 
         public JWTGenerator(IConfiguration config, UserManager<AppUser> userManager)
         {
+            var i = config.GetConnectionString("Key");
             key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.GetConnectionString("Key")));
             this.userManager = userManager;
         }

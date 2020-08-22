@@ -12,6 +12,6 @@ namespace SocialMedia.API.Domain.Dtos
         public string CommentContent { get; set; }
         public int PostId { get; set; }
         public string UserId { get; set; }
-        public virtual AppUser User { get; set; }
+        public virtual AppUserDto User { get; set; }
     }
 }
