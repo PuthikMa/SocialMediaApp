@@ -10,6 +10,6 @@ namespace SocialMedia.API.Domain.Dtos
         public string DisplayName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int ProfilePicture { get; set; }
+        public virtual PhotoDto Photo { get; set; }
     }
 }

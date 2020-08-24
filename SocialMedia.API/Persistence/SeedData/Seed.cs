@@ -34,6 +34,13 @@ namespace SocialMedia.API.Persistence.SeedData
                     await roleManager.CreateAsync(role);
                 }
 
+                var photo = new Photo
+                {
+                    Url = "https://res.cloudinary.com/pma-datingsite/image/upload/v1598122812/12055105_corfzl.jpg"
+
+                };
+                context.Photos.Add(photo);
+                await context.SaveChangesAsync();
                 var users = new List<AppUser>
                 {
                     new AppUser
@@ -42,7 +49,9 @@ namespace SocialMedia.API.Persistence.SeedData
                         LastName = "Josh",
                         UserName = "bob",
                         Email = "bob@test.com",
-                        DisplayName ="Bob Josh"
+                        DisplayName ="Bob Josh",
+                        PhotoId = photo.Id
+
                     },
                     new AppUser
                     {
@@ -50,7 +59,9 @@ namespace SocialMedia.API.Persistence.SeedData
                         UserName = "6825531065",
                         FirstName = "Puthik",
                         LastName ="Ma",
-                        DisplayName="Puthik Ma"
+                        Email="puthik.ma@gmail.com",
+                        DisplayName="Puthik Ma",
+                        PhotoId = photo.Id
 
                     }
                 };
@@ -58,12 +69,7 @@ namespace SocialMedia.API.Persistence.SeedData
                 foreach (var user in users)
                 {
                     await userManager.CreateAsync(user, "Pa$$w0rd");
-                    var photo = new Photo
-                    {
-                        Url = "https://res.cloudinary.com/pma-datingsite/image/upload/v1598122812/12055105_corfzl.jpg",
-                        UserId = user.Id
-                    };
-                    context.Photos.Add(photo);
+      
                     
                     if (user.UserName == "6825531065")
                     {
@@ -73,10 +79,10 @@ namespace SocialMedia.API.Persistence.SeedData
                     {
                         await userManager.AddToRoleAsync(user, "User");
                     }
-                    await context.SaveChangesAsync();
-                    var updateUser = await context.Users.Where(x => x.Id == user.Id).FirstOrDefaultAsync();
-                    updateUser.ProfilePicture = photo.Id;
-                    await context.SaveChangesAsync();
+                    
+                    //var updateUser = await context.Users.Where(x => x.Id == user.Id).FirstOrDefaultAsync();
+                    //updateUser.PhotoId = photo.Id;
+                    //await context.SaveChangesAsync();
 
                 }
             }

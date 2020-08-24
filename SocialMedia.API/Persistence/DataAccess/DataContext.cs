@@ -37,10 +37,10 @@ namespace SocialMedia.API.Persistence.DataAccess
                 .WithMany(u => u.Posts)
                 .HasForeignKey(s => s.UserId);
 
-            builder.Entity<Photo>()
-                .HasOne(a => a.User)
-                .WithMany(m => m.Photos)
-                .HasForeignKey(u => u.UserId);
+            builder.Entity<AppUser>()
+                .HasOne(a => a.Photo)
+                .WithOne(u => u.User);
+
 
         }
 

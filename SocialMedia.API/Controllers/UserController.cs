@@ -25,13 +25,31 @@ namespace SocialMedia.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login(LoginQuery loginQuery)
         {
-
+          
             return await mediator.Send(loginQuery);
         }
         [HttpPost("Register")]
         public async Task<ActionResult<User>> Register(UserRegisterCommand  registerCommand)
         {
+           
             return await mediator.Send(registerCommand);
         }
+        [HttpGet("ForgetPassword")]
+        public async Task<IActionResult> ForgetPassword(string Email)
+        {
+            var Token = await mediator.Send(new ForgetPasswordQuery { Email = Email });
+           
+            return Ok(Token);
+        }
+
+        [HttpPost("ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody]ResetPassword resetPassword)
+        {
+            var i = Url.Action();
+            await mediator.Send(new ResetPasswordCommand { ResetPassword = resetPassword });
+
+            return Ok();
+        }
+
     }
 }

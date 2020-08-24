@@ -37,7 +37,7 @@ namespace SocialMedia.API
             services.AddDbContext<DataContext>(opts =>
             {
                 opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+           });
 
             services.Configure<IdentityOptions>(option =>
             {
@@ -73,6 +73,8 @@ namespace SocialMedia.API
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddRazorPages();
+
             services.AddSwaggerDocument(config =>
             {
                 config.DocumentName = "OpenAPI 2";
@@ -83,6 +85,13 @@ namespace SocialMedia.API
                     Name = "Authorization",
                     In = OpenApiSecurityApiKeyLocation.Header,
                     Description = "Copy this into the value field: Bearer {token}"
+                });
+            });
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins();
                 });
             });
         }
@@ -101,13 +110,14 @@ namespace SocialMedia.API
             //app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
         }
