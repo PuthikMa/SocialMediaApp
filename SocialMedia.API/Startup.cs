@@ -18,6 +18,7 @@ using AutoMapper;
 using NSwag.Generation.Processors.Security;
 using NSwag;
 using System.Linq;
+using SocialMedia.API.Application.Hubs;
 
 namespace SocialMedia.API
 {
@@ -73,6 +74,7 @@ namespace SocialMedia.API
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddAutoMapper(typeof(Startup));
 
+            //services.AddScoped<CommentHub>();
             services.AddRazorPages();
 
             services.AddSwaggerDocument(config =>
@@ -94,6 +96,8 @@ namespace SocialMedia.API
                     policy.AllowAnyHeader().AllowAnyMethod().WithOrigins();
                 });
             });
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -117,8 +121,10 @@ namespace SocialMedia.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+               
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
+                endpoints.MapHub<CommentHub>("/hubs/comment");
             });
         }
     }

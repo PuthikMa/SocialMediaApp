@@ -12,7 +12,7 @@ namespace SocialMedia.API.Domain.Identity
         public string DisplayName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int PhotoId { get; set; }
+        public Guid PhotoId { get; set; }
         public virtual Photo Photo { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

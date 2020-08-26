@@ -8,7 +8,7 @@ namespace SocialMedia.API.Domain.Models
 {
     public class Photo
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Url { get; set; }
         public virtual AppUser User { get; set; }
 

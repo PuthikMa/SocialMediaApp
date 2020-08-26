@@ -24,7 +24,7 @@ namespace SocialMedia.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePost(CreatePostCommand createPost)
         {
-            return Ok(await mediator.Send(createPost)) ;
+            return Ok(await mediator.Send(createPost));
         }
 
         [HttpGet]
@@ -33,6 +33,11 @@ namespace SocialMedia.API.Controllers
 
             var Posts = await mediator.Send(new GetPostsQuery());
             return Posts;
+        }
+        [HttpPost("comment")]
+        public async Task<ActionResult<CommentDto>> Comment(CommentPostCommand comment)
+        {
+            return Ok(await mediator.Send(comment));
         }
     }
 }

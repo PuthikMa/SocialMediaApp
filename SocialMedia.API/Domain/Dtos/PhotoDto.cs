@@ -8,7 +8,7 @@ namespace SocialMedia.API.Domain.Dtos
 {
     public class PhotoDto
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Url { get; set; }
 
 

@@ -10,8 +10,8 @@ using SocialMedia.API.Persistence.DataAccess;
 namespace SocialMedia.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200824034121_Fixing Photo")]
-    partial class FixingPhoto
+    [Migration("20200824223100_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -207,8 +207,8 @@ namespace SocialMedia.API.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PhotoId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PhotoId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -238,16 +238,15 @@ namespace SocialMedia.API.Migrations
 
             modelBuilder.Entity("SocialMedia.API.Domain.Models.Comment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CommentContent")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -263,10 +262,9 @@ namespace SocialMedia.API.Migrations
 
             modelBuilder.Entity("SocialMedia.API.Domain.Models.Photo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
@@ -278,10 +276,9 @@ namespace SocialMedia.API.Migrations
 
             modelBuilder.Entity("SocialMedia.API.Domain.Models.Post", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PostContent")
                         .HasColumnType("nvarchar(max)");
