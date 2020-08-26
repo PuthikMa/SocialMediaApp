@@ -46,7 +46,8 @@ namespace SocialMedia.API.Application.Logic.Posts.Command
                 {
                     PostId = post.Id,
                     CommentContent = request.Comment,
-                    UserId = user.Id
+                    UserId = user.Id,
+                    CreateDate = DateTime.UtcNow
                 };
 
                 context.Comments.Add(comment);

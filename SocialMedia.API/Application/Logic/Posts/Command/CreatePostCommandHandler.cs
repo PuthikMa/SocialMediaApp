@@ -43,7 +43,9 @@ namespace SocialMedia.API.Application.Logic.Posts.Command
                 var post = new Post
                 {
                     PostContent = request.Post,
-                    UserId = user.Id
+                    UserId = user.Id,
+                    CreateDate = DateTime.UtcNow
+
                 };
                 post.User = user;
 

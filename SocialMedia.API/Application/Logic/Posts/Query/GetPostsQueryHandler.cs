@@ -28,7 +28,7 @@ namespace SocialMedia.API.Application.Logic.Posts.Query
                 .Include(x => x.User).ThenInclude(x => x.Photo)
                 .ToListAsync();
 
-            var user = await context.Users.Include(x => x.Photo).ToListAsync();
+     
 
             var postsDto = mapper.Map<List<PostDto>>(posts);
 

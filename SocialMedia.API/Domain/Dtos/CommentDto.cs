@@ -10,6 +10,7 @@ namespace SocialMedia.API.Domain.Dtos
     {
         public string Id { get; set; }
         public string CommentContent { get; set; }
+        public string CreateDate { get; set; }
         public Guid PostId { get; set; }
         public Guid UserId { get; set; }
         public virtual AppUserDto User { get; set; }

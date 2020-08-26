@@ -11,6 +11,7 @@ namespace SocialMedia.API.Domain.Models
         public Guid Id { get; set; }
         public string CommentContent { get; set; }
         public Guid PostId { get; set; }
+        public DateTime CreateDate { get; set; }
         public virtual Post Post { get; set; }
         public string UserId { get; set; }
         public virtual AppUser User { get; set; }

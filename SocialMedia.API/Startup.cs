@@ -98,6 +98,7 @@ namespace SocialMedia.API
             });
 
             services.AddSignalR();
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -111,10 +112,10 @@ namespace SocialMedia.API
             app.UseOpenApi();
             app.UseSwaggerUi3();
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors("CorsPolicy");
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
 
             app.UseAuthorization();
@@ -122,8 +123,8 @@ namespace SocialMedia.API
             app.UseEndpoints(endpoints =>
             {
                
-                endpoints.MapControllers();
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
                 endpoints.MapHub<CommentHub>("/hubs/comment");
             });
         }
