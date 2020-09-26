@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SocialMedia.API.Persistence.DataAccess;
 
 namespace SocialMedia.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200926221606_Add Emotion post DateTime")]
+    partial class AddEmotionpostDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -327,19 +329,12 @@ namespace SocialMedia.API.Migrations
                     b.Property<Guid>("PostId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmotionTypeId")
                         .IsUnique();
 
                     b.HasIndex("PostId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("PostEmotions");
                 });
@@ -437,10 +432,6 @@ namespace SocialMedia.API.Migrations
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("SocialMedia.API.Domain.Identity.AppUser", "User")
-                        .WithOne("PostEmotion")
-                        .HasForeignKey("SocialMedia.API.Domain.Models.PostEmotion", "UserId");
                 });
 #pragma warning restore 612, 618
         }

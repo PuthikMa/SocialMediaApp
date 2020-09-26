@@ -16,6 +16,8 @@ namespace SocialMedia.API.Domain.Dtos
             CreateMap<PhotoDto, Photo>();
             CreateMap<AppUserDto, AppUser>();
             CreateMap<AppUser, AppUserDto>();
+            CreateMap<PostEmotionDto, PostEmotion>();
+            CreateMap<PostEmotion, PostEmotionDto>();
         }
     }
 }

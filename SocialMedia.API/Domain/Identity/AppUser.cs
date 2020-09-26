@@ -14,6 +14,7 @@ namespace SocialMedia.API.Domain.Identity
         public string LastName { get; set; }
         public Guid PhotoId { get; set; }
         public virtual Photo Photo { get; set; }
+        public virtual PostEmotion PostEmotion { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }
