@@ -32,6 +32,7 @@ namespace SocialMedia.API.Application.Logic.Users.Command
         public async Task<User> Handle(UserRegisterCommand request, CancellationToken cancellationToken)
         {
             var userExist = await dbContext.Users.Where(x => x.UserName == request.UserName).AnyAsync();
+            var defaultPhotoId = await dbContext.Photos.Select(x=>x.Id).FirstOrDefaultAsync();
             if (userExist)
             {
                 throw new Exception();
@@ -44,7 +45,9 @@ namespace SocialMedia.API.Application.Logic.Users.Command
                     UserName = request.UserName,
                     FirstName = request.FirstName,
                     LastName = request.LastName,
-                    Email = request.Email
+                    Email = request.Email,
+                    PhotoId = defaultPhotoId
+
                 };
 
                 

@@ -10,7 +10,7 @@ namespace SocialMedia.API.Domain.Models
     {
         public Guid Id { get; set; }
         public string Url { get; set; }
-        public virtual AppUser User { get; set; }
+        public virtual ICollection <AppUser> User { get; set; }
 
 
     }

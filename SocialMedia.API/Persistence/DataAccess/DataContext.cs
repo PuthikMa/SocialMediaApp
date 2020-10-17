@@ -23,6 +23,7 @@ namespace SocialMedia.API.Persistence.DataAccess
             builder.Entity<Comment>(x => x.HasKey(u => u.Id));
             builder.Entity<Photo>(x => x.HasKey(u => u.Id));
             builder.Entity<PostEmotion>(b => b.HasKey(u => u.Id));
+
             builder.Entity<Comment>()
                 .HasOne(a => a.Post)
                 .WithMany(u => u.Comments)
@@ -40,7 +41,7 @@ namespace SocialMedia.API.Persistence.DataAccess
 
             builder.Entity<AppUser>()
                 .HasOne(a => a.Photo)
-                .WithOne(u => u.User);
+                .WithMany(u => u.User);
 
             builder.Entity<PostEmotion>()
                 .HasOne(a => a.Post)
