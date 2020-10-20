@@ -12,5 +12,10 @@ namespace SocialMedia.API.Application.Hubs
         {
             await Clients.All.SendAsync("ReceiveComment", comment);
         }
+
+        public Task SendPrivateMessage(string conectionId,string message)
+        {
+            return Clients.Client(conectionId).SendAsync("PrivateMessage", message);
+        }
     }
 }
