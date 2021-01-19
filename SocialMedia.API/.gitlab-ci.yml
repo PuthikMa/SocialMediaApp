@@ -1,0 +1,6 @@
+stages:
+ - deploy
+deploy:
+ stages: deploy
+ script:
+  - dotnet run

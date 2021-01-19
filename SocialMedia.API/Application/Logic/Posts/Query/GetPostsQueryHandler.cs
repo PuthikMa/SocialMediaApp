@@ -25,7 +25,7 @@ namespace SocialMedia.API.Application.Logic.Posts.Query
         {
             var posts = 
                 await context.Posts
-                .Include(x => x.Comments)
+                .Include(x => x.Comments).ThenInclude(a=>a.User)
                 .Include(x => x.User).ThenInclude(x => x.Photo)
                 .Include(x => x.PostEmotions)
                 .OrderByDescending(x=> x.CreateDate)

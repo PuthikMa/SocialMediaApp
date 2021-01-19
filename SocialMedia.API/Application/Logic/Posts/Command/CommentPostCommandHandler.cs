@@ -56,7 +56,9 @@ namespace SocialMedia.API.Application.Logic.Posts.Command
                 {
                     var commentDto = mapper.Map<CommentDto>(comment);
                     var json = JsonConvert.SerializeObject(commentDto);
+                
                     await hub.Clients.All.SendAsync("ReceiveComment",json);
+                    //var id = Context.
                     return commentDto;
                 }
             }

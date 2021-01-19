@@ -17,5 +17,11 @@ namespace SocialMedia.API.Application.Hubs
         {
             return Clients.Client(conectionId).SendAsync("PrivateMessage", message);
         }
+        public override Task OnConnectedAsync()
+        {
+            var connection = Context.ConnectionId;
+            //Context.User.AddIdentity();
+            return base.OnConnectedAsync();
+        }
     }
 }
