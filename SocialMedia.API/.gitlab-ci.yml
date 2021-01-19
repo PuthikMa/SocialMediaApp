@@ -1,6 +1,8 @@
-stages:
- - deploy
-deploy:
- stages: deploy
+build:
+ stage: build
  script:
-  - dotnet run
+   - chmod +x run.sh clean.sh
+   - bash run.sh
+   - docker build -t dockertest .
+   - docker run -d -p 5001:80 --restart unless-stopped dockertest
+   - bash clean.sh
