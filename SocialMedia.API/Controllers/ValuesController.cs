@@ -25,7 +25,7 @@ namespace SocialMedia.API.Controllers
         public async Task<ActionResult<User>> Login()
         {
 
-            return Ok("10 Test 01");
+            return Ok("10 Test 01 Test 02");
         }
     }
 }
